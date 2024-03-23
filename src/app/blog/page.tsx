@@ -2,7 +2,7 @@ import { Metadata } from "next/types";
 import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
 // import { PostData } from "@/interfaces/I_Post";
-import { getPosts } from "@/lib/data";
+import { PostData } from "@/interfaces/I_Post";
 
 export const metadata: Metadata = {
   title: "Blog Page",
@@ -10,15 +10,15 @@ export const metadata: Metadata = {
 };
 
 // FETCH DATA WITH API
-// const getData = async (): Promise<PostData[]> => {
-//   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+const getPosts = async (): Promise<PostData[]> => {
+  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog`);
 
-//   if (!res.ok) {
-//     throw new Error("getData error");
-//   }
+  if (!res.ok) {
+    throw new Error("getData error");
+  }
 
-//   return res.json();
-// };
+  return res.json();
+};
 
 async function BlogPage() {
   const posts = await getPosts();
@@ -26,7 +26,7 @@ async function BlogPage() {
   return (
     <div className={styles.container}>
       {posts.map((post) => (
-        <div className={styles.post} key={post.id}>
+        <div className={styles.post} key={post._id}>
           <PostCard post={post} />
         </div>
       ))}

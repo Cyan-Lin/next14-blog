@@ -1,4 +1,5 @@
 interface PostData {
+  _id: string;
   title: string;
   desc: string;
   img: string;
@@ -12,6 +13,7 @@ interface PostDetailData {
   id: string;
   title: string;
   body: string;
+  img: string;
 }
 
 export type { PostData, PostDetailData };

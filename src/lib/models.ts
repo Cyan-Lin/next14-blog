@@ -35,8 +35,8 @@ const userSchema = new Schema<UserInfo>(
     },
     password: {
       type: String,
-      required: true,
-      min: 6,
+      // required: true,
+      // min: 6,
     },
     img: {
       type: String,
@@ -79,5 +79,7 @@ const postSchema = new Schema<PostData>(
   }
 );
 
-export const User: Model<UserInfo> = models.User || model("User", userSchema);
-export const Post: Model<PostData> = models.Post || model("Post", postSchema);
+export const User =
+  (models.User as Model<UserInfo>) || model<UserInfo>("User", userSchema);
+export const Post =
+  (models.Post as Model<PostData>) || model<PostData>("Post", postSchema);

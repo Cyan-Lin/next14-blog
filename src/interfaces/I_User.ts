@@ -1,7 +1,7 @@
 interface UserInfo {
   username: string;
   email: string;
-  password: string;
+  password?: string;
   img: string;
   isAdmin: boolean;
 }

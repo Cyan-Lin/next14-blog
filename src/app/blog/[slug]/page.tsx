@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./singlePostPage.module.css";
 import PostUser from "@/components/postUser/postUser";
-import { PostDetailData } from "@/interfaces/I_Post";
+import { PostData } from "@/interfaces/I_Post";
 import { Suspense } from "react";
 import { getPost } from "@/lib/data";
 
@@ -12,20 +12,20 @@ type Props = {
 };
 
 // FETCH DATA WITH API
-// const getSinglePost = async (slug: string): Promise<PostDetailData> => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+const getSinglePost = async (slug: string): Promise<PostData> => {
+  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog/${slug}`);
 
-//   if (!res.ok) {
-//     throw new Error("Something went wrong");
-//   }
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
 
-//   return res.json();
-// };
+  return res.json();
+};
 
 export const generateMetadata = async ({ params }: Props) => {
   const { slug } = params;
 
-  const post = await getPost(slug);
+  const post = await getSinglePost(slug);
 
   return {
     title: post?.title,
@@ -36,7 +36,7 @@ export const generateMetadata = async ({ params }: Props) => {
 async function SinglePostPage({ params }: Props) {
   const { slug } = params;
 
-  const post = await getPost(slug);
+  const post = await getSinglePost(slug);
 
   return (
     <div className={styles.container}>
@@ -56,7 +56,7 @@ async function SinglePostPage({ params }: Props) {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {new Intl.DateTimeFormat().format(post?.createdAt)}
+              {new Intl.DateTimeFormat().format(new Date(post?.createdAt))}
             </span>
           </div>
         </div>
