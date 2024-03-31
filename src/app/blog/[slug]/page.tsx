@@ -3,7 +3,8 @@ import styles from "./singlePostPage.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { PostData } from "@/interfaces/I_Post";
 import { Suspense } from "react";
-import { getPost } from "@/lib/data";
+import Markdown from "markdown-to-jsx";
+import CustomMarkdown from "@/components/markdown/customMarkdown";
 
 type Props = {
   params: {
@@ -40,13 +41,15 @@ async function SinglePostPage({ params }: Props) {
 
   return (
     <div className={styles.container}>
-      {post?.img && (
+      {/* {post?.img && (
         <div className={styles.imgContainer}>
           <Image src={post.img} alt="" fill className={styles.img} />
         </div>
-      )}
+      )} */}
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>{post?.title}</h1>
+        {/* <h1 className={styles.title}> */}
+        <CustomMarkdown>{`# ${post.title}`}</CustomMarkdown>
+        {/* </h1> */}
         <div className={styles.detail}>
           {post && (
             <Suspense fallback={<div>Loading...</div>}>
@@ -61,6 +64,7 @@ async function SinglePostPage({ params }: Props) {
           </div>
         </div>
         <div className={styles.content}>{post?.desc}</div>
+        <CustomMarkdown>{post.content}</CustomMarkdown>
       </div>
     </div>
   );

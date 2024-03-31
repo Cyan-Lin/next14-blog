@@ -1,6 +1,8 @@
 .container {
-  display: flex;
-  gap: 100px;
+  /* display: flex;
+  gap: 100px; */
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .imgContainer {

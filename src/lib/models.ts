@@ -73,6 +73,10 @@ const postSchema = new Schema<PostData>(
       required: true,
       unique: true,
     },
+    content: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -30,6 +30,7 @@ import {
   toolbarPlugin,
 } from "@mdxeditor/editor";
 import { FC } from "react";
+import styles from "./editor.module.css";
 
 interface EditorProps {
   markdown: string;
@@ -71,6 +72,7 @@ const Editor: FC<EditorProps> = ({ markdown, editorRef }) => {
   return (
     <MDXEditor
       className="dark-theme dark-editor"
+      contentEditableClassName={styles.customEditorContent}
       ref={editorRef}
       markdown={markdown}
       plugins={[
@@ -135,7 +137,7 @@ const Editor: FC<EditorProps> = ({ markdown, editorRef }) => {
           ),
         }),
       ]}
-      onChange={console.log}
+      // onChange={console.log}
     />
   );
 };
