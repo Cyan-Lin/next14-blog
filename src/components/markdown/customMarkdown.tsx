@@ -1,6 +1,11 @@
 import Markdown from "markdown-to-jsx";
 import { ReactNode } from "react";
-import customH1 from "./customJsxs";
+import {
+  CustomH2,
+  CustomH1,
+  CustomParagraph,
+  CustomUnorderedList,
+} from "./customJsxs";
 
 type Props = {
   children: string;
@@ -11,7 +16,10 @@ function CustomMarkdown({ children }: Props) {
     <Markdown
       options={{
         overrides: {
-          h1: customH1,
+          h1: CustomH1,
+          h2: CustomH2,
+          p: CustomParagraph,
+          ul: CustomUnorderedList,
         },
       }}
     >

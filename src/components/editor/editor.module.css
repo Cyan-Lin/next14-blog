@@ -2,3 +2,8 @@
 .customEditorContent ol {
   padding-left: 20px;
 }
+
+.customEditorContent {
+  min-height: calc(100vh - 600px);
+  padding: 20px 12px;
+}

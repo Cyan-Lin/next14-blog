@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto, Noto_Sans_TC } from "next/font/google";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import "@mdxeditor/editor/style.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const noto_sans_tc_init = Noto_Sans_TC({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-noto-sans-tc",
+});
+
+const roboto_init = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-roboto",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -22,11 +33,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${noto_sans_tc_init.variable} ${roboto_init.variable}`}>
         <div className="container">
-          <Navbar />
-          {children}
-          <Footer />
+          <AntdRegistry>
+            <Navbar />
+            {children}
+            <Footer />
+          </AntdRegistry>
         </div>
       </body>
     </html>

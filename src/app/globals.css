@@ -18,6 +18,7 @@ body {
   color: var(--text);
   background: var(--bg);
   box-sizing: border-box;
+  font-family: var(--font-noto-sans-tc), var(--font-roboto), sans-serif;
 }
 
 a {
@@ -33,48 +34,35 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
+  gap: 20px;
+  /* justify-content: space-between; */
 
-@media (max-width: 1536px) {
-  .container {
+  @media (max-width: 1536px) {
     width: 1366px;
   }
-}
 
-@media (max-width: 1366px) {
-  .container {
+  @media (max-width: 1366px) {
     width: 1280px;
   }
-}
 
-@media (max-width: 1280px) {
-  .container {
+  @media (max-width: 1280px) {
     width: 1024px;
     padding: 0 20px;
   }
-}
 
-@media (max-width: 1024px) {
-  .container {
+  @media (max-width: 1024px) {
     width: 768px;
   }
-}
 
-@media (max-width: 768px) {
-  .container {
+  @media (max-width: 768px) {
     width: 640px;
   }
-}
 
-@media (max-width: 640px) {
-  .container {
+  @media (max-width: 640px) {
     width: 475px;
   }
-}
 
-@media (max-width: 475px) {
-  .container {
+  @media (max-width: 475px) {
     width: 380px;
   }
 }

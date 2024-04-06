@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { UserInfo } from "@/interfaces/I_User";
 import styles from "./postUser.module.css";
 import { getUser } from "@/lib/data";
 

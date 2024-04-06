@@ -5,6 +5,7 @@ interface PostData {
   img: string;
   userId: string;
   slug: string;
+  categories: string[];
   content: string;
   createdAt: Date;
 }

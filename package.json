@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.0",
     "@mdxeditor/editor": "^2.16.0",
+    "antd": "^5.16.1",
     "markdown-to-jsx": "^7.4.5",
     "mongoose": "^8.2.0",
     "next": "14.1.0",

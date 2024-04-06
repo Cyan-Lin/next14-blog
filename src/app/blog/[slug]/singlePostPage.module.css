@@ -19,7 +19,7 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  /* gap: 50px; */
 }
 
 .title {
@@ -30,12 +30,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 40px;
 }
 
 .detailText {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
 .detailTitle {
@@ -47,9 +48,9 @@
   font-weight: 500px;
 }
 
-.content {
+/* .content {
   font-size: 20px;
-}
+} */
 
 @media screen and (max-width: 768px) {
   .imgContainer {

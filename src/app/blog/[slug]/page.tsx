@@ -47,9 +47,8 @@ async function SinglePostPage({ params }: Props) {
         </div>
       )} */}
       <div className={styles.textContainer}>
-        {/* <h1 className={styles.title}> */}
         <CustomMarkdown>{`# ${post.title}`}</CustomMarkdown>
-        {/* </h1> */}
+        <CustomMarkdown>{`## ${post.desc}`}</CustomMarkdown>
         <div className={styles.detail}>
           {post && (
             <Suspense fallback={<div>Loading...</div>}>
@@ -63,7 +62,6 @@ async function SinglePostPage({ params }: Props) {
             </span>
           </div>
         </div>
-        <div className={styles.content}>{post?.desc}</div>
         <CustomMarkdown>{post.content}</CustomMarkdown>
       </div>
     </div>

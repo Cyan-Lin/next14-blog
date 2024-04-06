@@ -5,14 +5,15 @@
 }
 
 .avatar {
-  object-fit: cover;
   border-radius: 50%;
+  width: 45px;
+  height: 45px;
 }
 
 .texts {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
 .title {
