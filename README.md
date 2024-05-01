@@ -9,6 +9,9 @@
 - 字體調整: font-family: var(--font-noto-sans-tc), var(--font-roboto), sans-serif;
 - 編輯器新增最小高度與 padding + 預 loading UI
 - 新增 blog modal 的 categories 屬性，array of strings，將文章分門別類
+- 增加 antd custom css theme.ts(部分 css 還需要用 global 客製化)
+- API route 新增 POST(新增文章 API)
+- use client 的時後需要用到 env 變數，新增在 next.contfig
 
 # TODO:
 

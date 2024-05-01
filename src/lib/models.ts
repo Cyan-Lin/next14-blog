@@ -57,7 +57,20 @@ const postSchema = new Schema<PostData>(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    categories: {
+      type: [String],
+      required: true,
+    },
     desc: {
+      type: String,
+      required: true,
+    },
+    content: {
       type: String,
       required: true,
     },
@@ -65,15 +78,6 @@ const postSchema = new Schema<PostData>(
       type: String,
     },
     userId: {
-      type: String,
-      required: true,
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    content: {
       type: String,
       required: true,
     },

@@ -5,6 +5,8 @@ import "./globals.css";
 import "@mdxeditor/editor/style.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
+import { ConfigProvider } from "antd";
+import { theme } from "@/styles/theme";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],
@@ -33,15 +35,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto_sans_tc_init.variable} ${roboto_init.variable}`}>
-        <div className="container">
-          <AntdRegistry>
-            <Navbar />
-            {children}
-            <Footer />
-          </AntdRegistry>
-        </div>
-      </body>
+      <ConfigProvider theme={theme}>
+        <body
+          className={`${noto_sans_tc_init.variable} ${roboto_init.variable}`}
+        >
+          <div className="container">
+            <AntdRegistry>
+              <Navbar />
+              {children}
+              <Footer />
+            </AntdRegistry>
+          </div>
+        </body>
+      </ConfigProvider>
     </html>
   );
 }

@@ -12,6 +12,9 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    MAIN_API_DOMAIN: process.env.MAIN_API_DOMAIN,
+  },
 };
 
 export default nextConfig;

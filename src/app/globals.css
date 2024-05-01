@@ -66,3 +66,11 @@ a {
     width: 380px;
   }
 }
+
+/* .ant-select-selector {
+  border-radius: 50px !important;
+} */
+
+.ant-select-dropdown {
+  border-radius: 8px !important;
+}
