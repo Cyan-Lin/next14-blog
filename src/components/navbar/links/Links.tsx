@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import Image from "next/image";
 import { handleGithubLogout } from "@/lib/action";
 import { Session } from "next-auth";
+import { UserInfo } from "@/interfaces/I_User";
 
 type Props = {
   session: Session | null;
@@ -32,9 +33,20 @@ const links = [
 
 function Links({ session }: Props) {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<UserInfo>();
 
-  // TEMPORARY
-  const isAdmin = true;
+  const getCurrentUser = async () => {
+    const res = await fetch(
+      `${process.env.MAIN_API_DOMAIN}/api/auth/user/${session?.user?.email}`
+    );
+    const data = await res.json();
+
+    setUser(data);
+  };
+
+  useEffect(() => {
+    if (session?.user?.email) getCurrentUser();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -44,7 +56,9 @@ function Links({ session }: Props) {
         ))}
         {session?.user ? (
           <>
-            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+            {user?.isAdmin && (
+              <NavLink item={{ title: "Admin", path: "/admin" }} />
+            )}
             <form action={handleGithubLogout}>
               <button className={styles.logout}>Logout</button>
             </form>

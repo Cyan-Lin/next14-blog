@@ -12,8 +12,12 @@
 - 增加 antd custom css theme.ts(部分 css 還需要用 global 客製化)
 - API route 新增 POST(新增文章 API)
 - use client 的時後需要用到 env 變數，新增在 next.contfig
+- 新增文章功能
+- 編輯文章功能(一般功能)
 
 # TODO:
 
-- 開始施工新增文章的功能(title、desc、content、slug、categories(額外一個 modal:title+desc)、createdAt、img 最後再優化，上傳圖檔至雲端)
 - 編輯文章功能
+  - categories modal(title + desc)
+  - img 最後再優化，上傳圖檔至雲端
+- 編輯文章的時候要驗證身分(如何驗證? 待研究)

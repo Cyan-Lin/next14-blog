@@ -1,0 +1,12 @@
+.customEditorContent {
+  min-height: calc(100vh - 600px);
+  max-height: 100vh;
+  padding: 20px 12px;
+}
+
+.customEditorContent ul,
+.customEditorContent ol {
+  padding-left: 20px;
+}
+
+/* .customEditorContent  */

@@ -1,21 +1,22 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  /* flex-wrap: wrap; */
   gap: 20px;
 }
 
 .post {
-  width: 30%;
+  /* width: 30%; */
 }
 
 @media screen and (max-width: 1200px) {
   .post {
-    width: 45%;
+    /* width: 45%; */
   }
 }
 
 @media screen and (max-width: 768px) {
   .post {
-    width: 100%;
+    /* width: 100%; */
   }
 }

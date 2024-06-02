@@ -10,8 +10,8 @@
 }
 
 .imgContainer {
-  width: 90%;
-  height: 400px;
+  width: 95%;
+  height: 320px;
   position: relative;
 }
 
@@ -35,6 +35,12 @@
   margin-bottom: 20px;
   font-weight: 300;
   width: 90%;
+}
+
+.linkContainer {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .link {

@@ -8,6 +8,12 @@ type Props = {
 };
 
 function PostCard({ post }: Props) {
+  const parseDateTime = (isoString: Date) => {
+    const date = new Date(isoString);
+    const dateTime = new Intl.DateTimeFormat().format(date);
+    return dateTime;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -16,14 +22,19 @@ function PostCard({ post }: Props) {
             <Image src={post.img} alt="" fill className={styles.img} />
           )}
         </div>
-        <div className={styles.date}>2024.01.01</div>
+        <div className={styles.date}>{parseDateTime(post.createdAt)}</div>
       </div>
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post.title}</h1>
         <p className={styles.desc}>{post.desc}</p>
-        <Link className={styles.link} href={`/blog/${post.slug}`}>
-          READ MORE
-        </Link>
+        <div className={styles.linkContainer}>
+          <Link className={styles.link} href={`/blog/${post.slug}`}>
+            READ MORE
+          </Link>
+          <Link className={styles.link} href={`/blog/editor/${post.slug}`}>
+            Edit
+          </Link>
+        </div>
       </div>
     </div>
   );

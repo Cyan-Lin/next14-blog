@@ -2,7 +2,7 @@ import { ThemeConfig } from "antd";
 
 export const theme: ThemeConfig = {
   token: {
-    colorText: "#eee",
+    colorText: "var(--text)",
     // colorPrimary: "#bbb",
     // colorError: "orange",
     // colorLink: "yellow",
@@ -31,11 +31,11 @@ export const theme: ThemeConfig = {
       // controlOutline: "var(--blue-9)",
       lineWidth: 1,
       borderRadius: 3,
-      colorBorder: "#777",
-      hoverBorderColor: "#bbb",
+      colorBorder: "#bbb",
+      hoverBorderColor: "#777",
       activeBorderColor: "var(--blue-9)",
       colorTextPlaceholder: "#aaa",
-      colorBgContainer: "#0d0c22",
+      colorBgContainer: "var(--bg)",
 
       // colorPrimary: "red",
       // colorLink: "red",
@@ -53,18 +53,18 @@ export const theme: ThemeConfig = {
       // controlOutlineWidth: 3,
       // controlOutline: "var(--blue-9)",
       // lineWidth: 1,
-      colorPrimaryHover: "#bbb",
+      colorPrimaryHover: "var(--text)",
       // colorBorderBg: "red",
       borderRadiusLG: 3, // input框
       borderRadius: 5, // 選到的選項
-      colorText: "#eee",
-      colorBorder: "#777",
-      colorBgElevated: "#0d0c22",
-      multipleItemBorderColor: "#eee",
-      boxShadow: "0 0 0 1px #0d0c22",
-      optionSelectedBg: "var(--blue-7)",
-      optionActiveBg: "var(--blue-5)",
-      colorBgContainer: "#0d0c22",
+      colorText: "var(--text)",
+      colorBorder: "#bbb",
+      colorBgElevated: "var(--bg)",
+      multipleItemBorderColor: "var(--text)",
+      boxShadow: "0 0 0 1px var(--bg)",
+      optionSelectedBg: "var(--color-gray-6)",
+      optionActiveBg: "var(--color-gray-8)",
+      colorBgContainer: "var(--bg)",
     },
     Popover: {
       borderRadius: 50,

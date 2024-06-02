@@ -40,5 +40,33 @@ export const {
 
       return true;
     },
+
+    async session({ session }) {
+      // console.log(session);
+
+      // if (session?.user) {
+      //   connectToDb();
+      //   const user = await User.findOne({ email: session.user.email });
+      //   console.log(user);
+
+      //   if(user)
+      //   session.user.isAdmin = user
+      //   // connectToDb();
+      //   // const user = await User.findById(token.sub);
+      //   // session.user.username = user?.username;
+      //   // session.user.email = user?.email;
+      //   // session.user.img = user?.img;
+      // }
+      return session;
+    },
+
+    // async jwt({ token, user }) {
+    //   console.log("jwt user", token);
+
+    //   if (user) {
+    //     token.id = user._id;
+    //   }
+    //   return token;
+    // },
   },
 });

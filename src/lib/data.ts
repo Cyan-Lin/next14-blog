@@ -39,6 +39,20 @@ export const getPost = async (slug: string): Promise<PostData | null> => {
   }
 };
 
+export const getCurrentUser = async (
+  email: string
+): Promise<UserInfo | null> => {
+  noStore();
+  try {
+    connectToDb();
+    const user = User.findOne({ email });
+    return user;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch user!");
+  }
+};
+
 export const getUser = async (id: string): Promise<UserInfo | null> => {
   noStore();
   try {
