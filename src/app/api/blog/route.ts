@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { Post, User } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import mongoose, { Error } from "mongoose";
+import { Error } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 type PostProps = {

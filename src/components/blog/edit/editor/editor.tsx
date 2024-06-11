@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
 import {
@@ -31,6 +32,7 @@ import {
 } from "@mdxeditor/editor";
 import { FC } from "react";
 import styles from "./editor.module.css";
+import React from "react";
 
 interface EditorProps {
   markdown: string;
@@ -82,7 +84,7 @@ const Editor: FC<EditorProps> = ({ markdown, editorRef, onChange }) => {
         contentEditableClassName={styles.customEditorContent}
         ref={editorRef}
         markdown={markdown}
-        onChange={onChange}
+        onChange={(markdown) => onChange && onChange(markdown)}
         plugins={[
           headingsPlugin(),
           listsPlugin(),

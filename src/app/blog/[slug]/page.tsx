@@ -1,9 +1,8 @@
-import Image from "next/image";
 import styles from "./singlePostPage.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { PostData } from "@/interfaces/I_Post";
 import { Suspense } from "react";
-import Markdown from "markdown-to-jsx";
+// import Markdown from "markdown-to-jsx";
 import CustomMarkdown from "@/components/markdown/customMarkdown";
 
 type Props = {

@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import { ConfigProvider } from "antd";
 import { theme } from "@/styles/theme";
+import React from "react";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],

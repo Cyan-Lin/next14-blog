@@ -1,7 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { User } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 type Props = {
   params: {
@@ -9,7 +8,7 @@ type Props = {
   };
 };
 
-const GET = async (_: NextApiRequest, { params }: Props) => {
+const GET = async (_: NextRequest, { params }: Props) => {
   try {
     connectToDb();
     const currentUser = await User.findOne({ email: params.email });

@@ -1,5 +1,4 @@
 import Markdown from "markdown-to-jsx";
-import { ReactNode } from "react";
 import {
   CustomH2,
   CustomH1,
