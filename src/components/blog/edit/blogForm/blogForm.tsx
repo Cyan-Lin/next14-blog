@@ -9,6 +9,8 @@ import {
 } from "@/interfaces/I_Post";
 import { Button, Form, FormProps, Input, Select, SelectProps } from "antd";
 import dynamic from "next/dynamic";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 type Props = {
   postData?: PostData;
@@ -36,6 +38,14 @@ const MDXEditor = dynamic(
 
 function BlogForm({ postData }: Props) {
   const { title, slug, categories, desc, content } = postData || {};
+
+  useEffect(() => {
+    console.log(Cookies.get("user"));
+
+    if (!Cookies.get("user")) {
+      window.location.href = "/login";
+    }
+  }, []);
 
   const OPTIONS: SelectProps["options"] = [
     { label: "React", value: "react" },
@@ -90,7 +100,6 @@ function BlogForm({ postData }: Props) {
 
   const onFinish: FormProps<FormInfo>["onFinish"] = async (values) => {
     let res;
-    console.log("trigger");
 
     try {
       if (postData) {

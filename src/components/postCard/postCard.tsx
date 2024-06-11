@@ -14,6 +14,8 @@ function PostCard({ post }: Props) {
     return dateTime;
   };
 
+  console.log("post", post);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -31,7 +33,7 @@ function PostCard({ post }: Props) {
           <Link className={styles.link} href={`/blog/${post.slug}`}>
             READ MORE
           </Link>
-          <Link className={styles.link} href={`/blog/editor/${post.slug}`}>
+          <Link className={styles.link} href={`/blog/edit/${post.slug}`}>
             Edit
           </Link>
         </div>

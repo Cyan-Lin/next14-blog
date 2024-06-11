@@ -7,7 +7,6 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import { ConfigProvider } from "antd";
 import { theme } from "@/styles/theme";
-import { cookies } from "next/headers";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],
@@ -34,15 +33,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/getCookie`);
-  // const { cookie } = await res.json();
-
-  // console.log(cookie);
-
-  // const cookieStore = cookies();
-  // const SOURCE_TYPE = cookieStore.get("SOURCE_TYPE");
-  // console.log("SOURCE_TYPE", SOURCE_TYPE?.value);
-
   return (
     <html lang="en">
       <ConfigProvider theme={theme}>

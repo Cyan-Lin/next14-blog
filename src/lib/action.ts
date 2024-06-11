@@ -4,6 +4,7 @@ import { connectToDb } from "./utils";
 import { Post } from "./models";
 import { revalidatePath } from "next/cache";
 import { signIn, signOut } from "./auth";
+import { cookies } from "next/headers";
 
 export const addPost = async (formData: FormData) => {
   const { title, desc, slug, userId } = Object.fromEntries(formData);
@@ -47,5 +48,6 @@ export const handleGithubLogin = async () => {
 };
 
 export const handleGithubLogout = async () => {
+  cookies().delete("user");
   await signOut();
 };

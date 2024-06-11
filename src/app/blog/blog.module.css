@@ -1,12 +1,14 @@
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(330px, 520px));
   /* flex-wrap: wrap; */
   gap: 20px;
 }
 
 .post {
   /* width: 30%; */
+  /* height: 100%; */
 }
 
 @media screen and (max-width: 1200px) {
