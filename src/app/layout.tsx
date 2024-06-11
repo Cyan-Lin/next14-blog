@@ -3,11 +3,11 @@ import { Roboto, Noto_Sans_TC } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import "@mdxeditor/editor/style.css";
-import Navbar from "@/components/navbar/navbar";
-import Footer from "@/components/footer/footer";
 import { ConfigProvider } from "antd";
 import { theme } from "@/styles/theme";
 import React from "react";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],
