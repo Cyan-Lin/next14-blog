@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 
 // FETCH DATA WITH API
 const getPosts = async (): Promise<PostData[]> => {
-  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog`);
+  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("getData error");

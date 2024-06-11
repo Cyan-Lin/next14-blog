@@ -11,7 +11,9 @@ async function EditPage({ params }: Props) {
   const { slug } = params;
 
   const getPost = async (): Promise<PostData> => {
-    const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog/${slug}`);
+    const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog/${slug}`, {
+      cache: "no-store",
+    });
     return res.json();
   };
 

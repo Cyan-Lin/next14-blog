@@ -13,7 +13,9 @@ type Props = {
 
 // FETCH DATA WITH API
 const getSinglePost = async (slug: string): Promise<PostData> => {
-  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog/${slug}`);
+  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog/${slug}`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Something went wrong");
