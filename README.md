@@ -14,9 +14,14 @@
 - use client 的時後需要用到 env 變數，新增在 next.contfig
 - 新增文章功能
 - 編輯文章功能(一般功能)
+- 新增 logo
+- 新增 Cusor
+- 優化 markdown 樣式
 
 # TODO:
 
+- blog 排版，先取消圖片功能(非必要、非緊急)
+- blog list 分 category 顯示的功能
 - 編輯文章功能
   - categories modal(title + desc)
   - img 最後再優化，上傳圖檔至雲端

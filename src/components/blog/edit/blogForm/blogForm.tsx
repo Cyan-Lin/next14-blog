@@ -40,7 +40,7 @@ function BlogForm({ postData }: Props) {
   const { title, slug, categories, desc, content } = postData || {};
 
   useEffect(() => {
-    console.log(Cookies.get("user"));
+    // console.log(Cookies.get("user"));
 
     if (!Cookies.get("user")) {
       window.location.href = "/login";

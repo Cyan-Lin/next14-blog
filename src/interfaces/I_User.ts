@@ -4,6 +4,7 @@ interface UserInfo {
   password?: string;
   img: string;
   isAdmin: boolean;
+  role: "user" | "admin";
 }
 
 export type { UserInfo };

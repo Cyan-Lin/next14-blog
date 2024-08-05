@@ -24,6 +24,8 @@
   --color-gray-7: #495057;
   --color-gray-8: #343a40;
   --color-gray-9: #212529;
+
+  --z-999: 999;
 }
 
 *,
@@ -93,4 +95,47 @@ a {
 
 .ant-select-dropdown {
   border-radius: 8px !important;
+}
+
+.cursor {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  z-index: var(--z-999);
+
+  .circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--color-gray-6);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+
+    &.visible {
+      animation: fadeIn 10s forwards;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 為所有 inline code 設置樣式，排除 pre > code */
+code:not(pre > code) {
+  color: var(--color-primary-2);
+  background-color: var(--color-gray-2);
+  padding: 2px 6px;
+  border-radius: 5px;
 }

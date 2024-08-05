@@ -45,6 +45,11 @@ const userSchema = new Schema<UserInfo>(
       type: Boolean,
       default: false,
     },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
   },
   {
     timestamps: true,
@@ -80,6 +85,10 @@ const postSchema = new Schema<PostData>(
     userId: {
       type: String,
       required: true,
+    },
+    requiredRoles: {
+      type: [String],
+      default: ["user"],
     },
   },
   {

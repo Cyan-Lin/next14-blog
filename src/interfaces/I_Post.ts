@@ -7,6 +7,7 @@ interface PostData {
   slug: string;
   categories: string[];
   content: string;
+  requiredRoles: string[];
   createdAt: Date;
 }
 

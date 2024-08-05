@@ -5,9 +5,13 @@ import "./globals.css";
 import "@mdxeditor/editor/style.css";
 import { ConfigProvider } from "antd";
 import { theme } from "@/styles/theme";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import styles from "./layout.module.css";
+import Cursor from "@/components/cursor";
+import { isMobile } from "@/constant/common";
+import Eruda from "@/components/eruda";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],
@@ -38,8 +42,10 @@ export default async function RootLayout({
     <html lang="en">
       <ConfigProvider theme={theme}>
         <body
-          className={`${noto_sans_tc_init.variable} ${roboto_init.variable}`}
+          className={`${styles.body} ${noto_sans_tc_init.variable} ${roboto_init.variable}`}
         >
+          {/* {<Eruda />} */}
+          <Cursor />
           <div className="container">
             <AntdRegistry>
               <Navbar />

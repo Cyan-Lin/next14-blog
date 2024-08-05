@@ -18,6 +18,7 @@ const nextConfig = {
   },
   env: {
     MAIN_API_DOMAIN: process.env.MAIN_API_DOMAIN,
+    MODE: process.env.MODE || "development",
   },
 };
 

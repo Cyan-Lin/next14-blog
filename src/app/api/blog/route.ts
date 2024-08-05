@@ -17,7 +17,30 @@ export const GET = async () => {
   try {
     connectToDb();
 
-    const posts = await Post.find();
+    // 檢查是否有登入
+    const session = await auth();
+    const currentUser = session
+      ? await User.findOne({ email: session?.user?.email })
+      : null;
+
+    // 根據用戶角色來設定查詢條件
+    let query = {};
+    if (currentUser) {
+      if (currentUser.isAdmin) {
+        query = {}; // 管理員可以看到所有文章
+      } else {
+        query = { requiredRoles: { $in: ["user"] } };
+      }
+    } else {
+      // 未登入的用戶只能看到一般用戶的文章
+      $or: [
+        { requiredRoles: { $in: ["user"] } },
+        { requiredRoles: { $exists: false } },
+      ];
+    }
+
+    // 查詢文章
+    const posts = await Post.find(query);
     // console.log(posts);
 
     return NextResponse.json(posts);
