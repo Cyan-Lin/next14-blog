@@ -1,22 +1,6 @@
-import { PostData } from "@/interfaces/I_Post";
+import { PostCategory, PostData } from "@/interfaces/I_Post";
 import { UserInfo } from "@/interfaces/I_User";
 import { Model, Schema, model, models } from "mongoose";
-
-// interface IUser {
-//   username: string;
-//   email: string;
-//   password: string;
-//   img: string;
-//   isAdmin: boolean;
-// }
-
-// interface IPost {
-//   title: string;
-//   desc: string;
-//   img: string;
-//   userId: string;
-//   slug: string;
-// }
 
 const userSchema = new Schema<UserInfo>(
   {
@@ -96,7 +80,20 @@ const postSchema = new Schema<PostData>(
   }
 );
 
+const categorySchema = new Schema({
+  key: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+});
+
 export const User =
   (models.User as Model<UserInfo>) || model<UserInfo>("User", userSchema);
 export const Post =
   (models.Post as Model<PostData>) || model<PostData>("Post", postSchema);
+export const Category =
+  (models.Category as Model<PostCategory>) || model("Category", categorySchema);

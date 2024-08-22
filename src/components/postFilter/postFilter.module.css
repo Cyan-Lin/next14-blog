@@ -1,0 +1,16 @@
+/* .postFilter {
+  padding: 0 20px 0 40px;
+  width: 400px;
+  border-left: 1px solid var(--color-gray-4);
+} */
+
+.postFilter {
+  /* & .antDropdown {
+    min-width: 100px;
+    background-color: var(--color-gray-1);
+  } */
+
+  /* & .antSpace { */
+  /* width: 100px; */
+  /* } */
+}

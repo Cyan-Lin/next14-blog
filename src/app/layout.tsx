@@ -12,6 +12,7 @@ import styles from "./layout.module.css";
 import Cursor from "@/components/cursor";
 import { isMobile } from "@/constant/common";
 import Eruda from "@/components/eruda";
+import "antd/dist/reset.css";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],

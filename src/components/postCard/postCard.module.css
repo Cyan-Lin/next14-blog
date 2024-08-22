@@ -5,7 +5,7 @@
   margin-bottom: 20px;
 }
 
-.top {
+/* .top {
   display: flex;
 }
 
@@ -17,22 +17,16 @@
 
 .img {
   object-fit: cover;
-}
-
-.date {
-  font-size: 12px;
-  transform: rotate(270deg);
-  margin: auto 0;
-}
+} */
 
 .title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 10px;
   width: 90%;
 }
 
 .desc {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   font-weight: 300;
   width: 90%;
   overflow: hidden;
@@ -43,12 +37,18 @@
   -webkit-line-clamp: 2;
 }
 
-.linkContainer {
+.cardFooter {
   width: 90%;
   display: flex;
   justify-content: space-between;
 }
 
-.link {
-  text-decoration: underline;
+.date {
+  font-size: 12px;
+  /* transform: rotate(270deg); */
+  margin: auto 0;
+}
+
+.actions {
+  /* margin-left: auto; */
 }

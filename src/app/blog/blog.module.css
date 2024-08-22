@@ -1,7 +1,15 @@
 .container {
+  display: flex;
+  gap: 100px;
+}
+
+.posts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(330px, 520px));
+  grid-template-columns: repeat(auto-fill, minmax(750px, 1fr));
+  /* 行高根據內容自適應，但是不超過某個最大值或不小於某個最小值 */
+  /* 行高最小150px，最大180px */
+  /* grid-auto-rows: minmax(150px, 180px); */
+  /* 如果不希望行高被限制，可以完全省略 grid-template-rows 或 grid-auto-rows，這樣每行的高度將根據其內容自適應 */
   /* flex-wrap: wrap; */
   gap: 20px;
 }

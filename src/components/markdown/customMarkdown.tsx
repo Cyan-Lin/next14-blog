@@ -9,7 +9,7 @@ import {
   CustomH3,
   CustomH4,
 } from "./customJsxs";
-import RichArticlePreBlock from "./RichArticlePreBlock";
+import RichArticlePreBlock from "./richArticlePreBlock";
 
 type Props = {
   children: string;

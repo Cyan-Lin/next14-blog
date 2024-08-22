@@ -17,9 +17,13 @@
 - 新增 logo
 - 新增 Cusor
 - 優化 markdown 樣式
+- 首頁、about page 修改，contact 不需要，確認 admin 不會被看到
 
 # TODO:
 
+- markdown 其他像 table 格式待新增
+- 新增/編輯 category 功能待新增
+- 排版參考: https://medium.com/
 - blog 排版，先取消圖片功能(非必要、非緊急)
 - blog list 分 category 顯示的功能
 - 編輯文章功能

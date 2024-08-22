@@ -3,18 +3,40 @@
 import { BaseResponse } from "@/interfaces/I_Base";
 import {
   FormInfo,
+  PostCategory,
   PostData,
   SavePostRequest,
   UpdatePostRequest,
 } from "@/interfaces/I_Post";
-import { Button, Form, FormProps, Input, Select, SelectProps } from "antd";
+import {
+  Button,
+  Form,
+  FormProps,
+  Input,
+  Modal,
+  Select,
+  SelectProps,
+} from "antd";
 import dynamic from "next/dynamic";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getPostCategories } from "@/app/domainApi/post";
+import styled from "styled-components";
 
 type Props = {
   postData?: PostData;
 };
+
+const CustomCategoryItem = styled(Form.Item<FormInfo>)`
+  .ant-form-item-control-input-content {
+    display: flex;
+    gap: 5px;
+  }
+
+  .ant-btn {
+    height: unset;
+  }
+`;
 
 const MDXEditor = dynamic(
   () => import("@/components/blog/edit/editor/editor"),
@@ -39,24 +61,29 @@ const MDXEditor = dynamic(
 function BlogForm({ postData }: Props) {
   const { title, slug, categories, desc, content } = postData || {};
 
+  const [postCategories, setPostCategories] = useState<SelectProps["options"]>(
+    []
+  );
+  const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+
   useEffect(() => {
-    // console.log(Cookies.get("user"));
+    getCategories();
 
     if (!Cookies.get("user")) {
       window.location.href = "/login";
     }
   }, []);
 
-  const OPTIONS: SelectProps["options"] = [
-    { label: "React", value: "react" },
-    { label: "Next.js", value: "next" },
-    { label: "TypeScript", value: "ts" },
-    { label: "JavaScript", value: "js" },
-    { label: "CSS", value: "css" },
-    { label: "MUI", value: "mui" },
-    { label: "Tailwind", value: "tailwind" },
-    { label: "Ant Design", value: "antd" },
-  ];
+  const getCategories = async () => {
+    const categories = await getPostCategories();
+
+    setPostCategories(
+      categories.map((category) => ({
+        label: category.name,
+        value: category.key,
+      }))
+    );
+  };
 
   const handleSavePost = async ({
     title,
@@ -135,6 +162,10 @@ function BlogForm({ postData }: Props) {
     console.log("Failed:", errorInfo);
   };
 
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
   return (
     <Form
       layout="vertical"
@@ -182,10 +213,11 @@ function BlogForm({ postData }: Props) {
           disabled={!!postData}
         />
       </Form.Item>
-      <Form.Item<FormInfo>
+      <CustomCategoryItem
         label="Categories"
         name="categories"
         rules={[{ required: true, message: "Please select categories!" }]}
+        // style={{ display: "flex" }}
       >
         <Select
           mode="multiple"
@@ -194,10 +226,33 @@ function BlogForm({ postData }: Props) {
           // defaultValue={["a10", "c12"]}
           // onChange={(value) => setCategories(value)}
           // style={{ width: "100%" }}
-          options={OPTIONS}
-          dropdownStyle={{ border: "1px solid #ccc", borderRadius: "4px" }}
+          style={{ width: "90%" }}
+          options={postCategories}
+          // dropdownStyle={{ border: "1px solid #ccc", borderRadius: "4px" }}
         />
-      </Form.Item>
+        <Button type="primary" onClick={() => setCategoryModalOpen(true)}>
+          Add Category
+        </Button>
+        <Modal
+          title="Add Category"
+          centered
+          open={categoryModalOpen}
+          onOk={() => setCategoryModalOpen(false)}
+          onCancel={() => setCategoryModalOpen(false)}
+          width={1000}
+        >
+          {/* <p>some contents...</p>
+          <p>some contents...</p>
+          <p>some contents...</p> */}
+          <Select
+            mode="tags"
+            style={{ width: "100%" }}
+            placeholder="Tags Mode"
+            onChange={handleChange}
+            options={postCategories}
+          />
+        </Modal>
+      </CustomCategoryItem>
       <Form.Item<FormInfo>
         label="Description"
         name="description"

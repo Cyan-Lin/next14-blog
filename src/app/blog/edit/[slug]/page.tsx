@@ -19,8 +19,6 @@ async function EditPage({ params }: Props) {
 
   const post = await getPost();
 
-  console.log("post", post);
-
   return (
     <>
       <BlogForm postData={post} />

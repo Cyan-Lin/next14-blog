@@ -34,4 +34,15 @@ type UpdatePostRequest = {
   content: string;
 };
 
-export type { PostData, FormInfo, SavePostRequest, UpdatePostRequest };
+type PostCategory = {
+  key: string;
+  name: string;
+};
+
+export type {
+  PostData,
+  FormInfo,
+  SavePostRequest,
+  UpdatePostRequest,
+  PostCategory,
+};
