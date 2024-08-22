@@ -3,7 +3,7 @@
 import { BaseResponse } from "@/interfaces/I_Base";
 import {
   FormInfo,
-  PostCategory,
+  // PostCategory,
   PostData,
   SavePostRequest,
   UpdatePostRequest,

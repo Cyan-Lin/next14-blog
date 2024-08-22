@@ -1,4 +1,4 @@
-import { isValidElement } from "react";
+import React, { isValidElement } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import stackOverflowDark from "react-syntax-highlighter/dist/esm/styles/hljs/stackoverflow-dark";
 import styles from "./customJsxs.module.css";
@@ -35,9 +35,11 @@ function RichArticlePreBlock({ children, ...rest }: RichArticlePreBlockProps) {
   if (isValidElement(children) && children.type === "code") {
     return (
       <RichArticleCodeBlock
-        children={children.props.children}
+        // children={children.props.children}
         className={children.props.className}
-      />
+      >
+        {children.props.children}
+      </RichArticleCodeBlock>
     );
   }
 

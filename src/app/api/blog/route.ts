@@ -33,10 +33,10 @@ export const GET = async () => {
       }
     } else {
       // 未登入的用戶只能看到一般用戶的文章
-      $or: [
-        { requiredRoles: { $in: ["user"] } },
-        { requiredRoles: { $exists: false } },
-      ];
+      // $or: [
+      //   { requiredRoles: { $in: ["user"] } },
+      //   { requiredRoles: { $exists: false } },
+      // ];
     }
 
     // 查詢文章

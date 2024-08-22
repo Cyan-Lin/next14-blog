@@ -1,9 +1,9 @@
 import { Metadata } from "next/types";
 import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
-import { PostCategory, PostData } from "@/interfaces/I_Post";
+import { PostData } from "@/interfaces/I_Post";
 import dynamic from "next/dynamic";
-import seedCategories from "@/data/seed";
+// import seedCategories from "@/data/seed";
 import { getPostCategories } from "../domainApi/post";
 const PostFilter = dynamic(() => import("@/components/postFilter/postFilter"), {
   ssr: false,

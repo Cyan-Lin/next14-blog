@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Dropdown, MenuProps, Space } from "antd";
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import styles from "./postFilter.module.css";
 import { useState } from "react";
 import { MenuItemType } from "antd/es/menu/hooks/useItems";

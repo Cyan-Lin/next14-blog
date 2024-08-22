@@ -1,10 +1,13 @@
 import Link from "next/link";
 import styles from "./postCard.module.css";
-import { PostCategory, PostData } from "@/interfaces/I_Post";
-import dynamic from "next/dynamic";
-const Actions = dynamic(() => import("./actions/actions"), {
-  ssr: false,
-});
+import {
+  // PostCategory,
+  PostData,
+} from "@/interfaces/I_Post";
+// import dynamic from "next/dynamic";
+// const Actions = dynamic(() => import("./actions/actions"), {
+//   ssr: false,
+// });
 
 type Props = {
   post: PostData;

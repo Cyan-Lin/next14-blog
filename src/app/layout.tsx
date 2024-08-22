@@ -5,13 +5,13 @@ import "./globals.css";
 import "@mdxeditor/editor/style.css";
 import { ConfigProvider } from "antd";
 import { theme } from "@/styles/theme";
-import React, { useEffect } from "react";
+import React from "react";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import styles from "./layout.module.css";
 import Cursor from "@/components/cursor";
-import { isMobile } from "@/constant/common";
-import Eruda from "@/components/eruda";
+// import { isMobile } from "@/constant/common";
+// import Eruda from "@/components/eruda";
 import "antd/dist/reset.css";
 
 const noto_sans_tc_init = Noto_Sans_TC({
