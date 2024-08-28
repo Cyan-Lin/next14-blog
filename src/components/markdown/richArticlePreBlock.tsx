@@ -1,7 +1,7 @@
 import React, { isValidElement } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import stackOverflowDark from "react-syntax-highlighter/dist/esm/styles/hljs/stackoverflow-dark";
-import styles from "./customJsxs.module.css";
+import styles from "./customJsxs.module.scss";
 
 type RichArticleCodeBlockProps = {
   children: string;

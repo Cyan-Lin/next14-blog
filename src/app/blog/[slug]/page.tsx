@@ -35,6 +35,59 @@ export const generateMetadata = async ({ params }: Props) => {
   };
 };
 
+// const markdown = `
+// # 標題 1
+// ## 標題 2
+// ### 標題 3
+// #### 標題 4
+// ##### 標題 5
+// ###### 標題 6
+
+// 段落之間需要留一個空行。這樣可以讓 Markdown 正確識別段落。
+
+// 這是一個段落。
+
+// 這是另一個段落。
+
+// - *斜體*
+// - **粗體**
+// - ***粗斜體***
+
+// - 項目 1
+// - 項目 2
+//   - 子項目 2.1
+//   - 子項目 2.2
+
+// 1. 第一項
+// 2. 第二項
+//    1. 子項 2.1
+//    2. 子項 2.2
+
+//    [訪問 Google](https://www.google.com)
+
+//    ![Markdown Logo](https://markdown-here.com/img/icon256.png)
+
+//    > 這是一個引用的例子。
+
+//    這是一段行內代碼
+//    \`\`\`
+//    console.log("Hello, World!");
+//    \`\`\`
+
+//   \`\`\`
+// function hello() {
+//     console.log('Hello, World!');
+// }
+// \`\`\`
+
+// ---
+
+// | 標題 1 | 標題 2 | 標題 3 |
+// | ------ | ------ | ------ |
+// | 內容 1 | 內容 2 | 內容 3 |
+// | 內容 3 | 內容 4 | 內容 5 |
+// `;
+
 async function SinglePostPage({ params }: Props) {
   const { slug } = params;
 
@@ -64,6 +117,7 @@ async function SinglePostPage({ params }: Props) {
           </div>
         </div>
         <CustomMarkdown>{post.content}</CustomMarkdown>
+        {/* <CustomMarkdown>{markdown}</CustomMarkdown> */}
       </div>
     </div>
   );
