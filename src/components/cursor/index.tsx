@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { isMobile } from "@/constant/common";
+import { isMobile } from "@/helpers/common";
 import { usePathname } from "next/navigation";
 
 function Cursor() {

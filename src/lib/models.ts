@@ -91,9 +91,11 @@ const categorySchema = new Schema({
   },
 });
 
-export const User =
+const User =
   (models.User as Model<UserInfo>) || model<UserInfo>("User", userSchema);
-export const Post =
+const Post =
   (models.Post as Model<PostData>) || model<PostData>("Post", postSchema);
-export const Category =
+const Category =
   (models.Category as Model<PostCategory>) || model("Category", categorySchema);
+
+export { User, Post, Category };

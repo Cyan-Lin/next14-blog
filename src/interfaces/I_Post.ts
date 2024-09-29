@@ -15,8 +15,9 @@ type FormInfo = {
   title: string;
   slug: string;
   categories: string[];
-  description: string;
+  desc: string;
   content: string;
+  adminOnly: boolean;
 };
 
 type SavePostRequest = {
@@ -25,6 +26,7 @@ type SavePostRequest = {
   categories: string[];
   desc: string;
   content: string;
+  adminOnly: boolean;
 };
 
 type UpdatePostRequest = {
@@ -32,6 +34,7 @@ type UpdatePostRequest = {
   categories: string[];
   desc: string;
   content: string;
+  adminOnly: boolean;
 };
 
 type PostCategory = {

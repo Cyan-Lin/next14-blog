@@ -1,11 +1,12 @@
-import { handleGithubLogin } from "@/lib/action";
+"use client";
+import { signIn } from "next-auth/react";
 
 async function LoginPage() {
   return (
     <div>
-      <form action={handleGithubLogin}>
-        <button>Login with Github</button>
-      </form>
+      <button onClick={() => signIn("github", { callbackUrl: "/blog" })}>
+        Login with Github
+      </button>
     </div>
   );
 }

@@ -19,14 +19,16 @@
 - 優化 markdown 樣式
 - 首頁、about page 修改，contact 不需要，確認 admin 不會被看到
 - markdown 其他像 table 格式等等補齊(已新增)
+- next-auth 由 ^5.0.0-beta.15 降版至 ^4.24.7，原因為 beta 版在 call API 的時候拿不到 session 的問題導致無法直接驗證 user 的權限，網路資源找不到一個可用的解答。降版並修改後，已經可以正常使用
+- 新增/編輯 category 功能已新增
+- 排版參考: https://medium.com/
+- blog 新排版
+- 編輯文章的時候要驗證身分，使用 session，user 在登入 github 後，在 authOptions 的 callback 中設定，把 user 在 mongoDB 的資訊存入 session 中，在需要權限的 page(或是查詢 adminOnly 的 blog post)，以及建立/編輯 post 的時候，取出來使用，若沒有權限，則無法對 post 進行操作
 
 # TODO:
 
-- 新增/編輯 category 功能待新增
-- 排版參考: https://medium.com/
-- blog 排版，先取消圖片功能(非必要、非緊急)
+- 圖片功能(非必要、非緊急)
 - blog list 分 category 顯示的功能
 - 編輯文章功能
-  - categories modal(title + desc)
   - img 最後再優化，上傳圖檔至雲端
-- 編輯文章的時候要驗證身分(如何驗證? 待研究)
+- homePage、aboutPage 需補上

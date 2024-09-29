@@ -1,16 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import Image from "next/image";
-import { handleGithubLogout } from "@/lib/action";
-import { Session } from "next-auth";
-import { UserInfo } from "@/interfaces/I_User";
-
-type Props = {
-  session: Session | null;
-};
+import { signOut, useSession } from "next-auth/react";
+import Cookies from "js-cookie";
 
 const links = [
   // {
@@ -31,22 +26,37 @@ const links = [
   },
 ];
 
-function Links({ session }: Props) {
+function Links() {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState<UserInfo>();
 
-  const getCurrentUser = async () => {
-    const res = await fetch(
-      `${process.env.MAIN_API_DOMAIN}/api/auth/user/${session?.user?.email}`
-    );
-    const data = await res.json();
+  const { data: session, status: sessionStatus } = useSession();
+  const { isAdmin } = session?.user || {};
 
-    setUser(data);
+  const renderLinksBySession = () => {
+    if (sessionStatus === "loading") {
+      return <div>Loading...</div>;
+    }
+    if (sessionStatus === "unauthenticated") {
+      return <NavLink item={{ title: "Login", path: "/login" }} />;
+    } else {
+      return (
+        session?.user && (
+          <>
+            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+            <button
+              onClick={() => {
+                Cookies.remove("user");
+                signOut({ callbackUrl: "/login" });
+              }}
+              className={styles.logout}
+            >
+              Logout
+            </button>
+          </>
+        )
+      );
+    }
   };
-
-  useEffect(() => {
-    if (session?.user?.email) getCurrentUser();
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -54,18 +64,7 @@ function Links({ session }: Props) {
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {session?.user ? (
-          <>
-            {user?.isAdmin && (
-              <NavLink item={{ title: "Admin", path: "/admin" }} />
-            )}
-            <form action={handleGithubLogout}>
-              <button className={styles.logout}>Logout</button>
-            </form>
-          </>
-        ) : (
-          <NavLink item={{ title: "Login", path: "/login" }} />
-        )}
+        {renderLinksBySession()}
       </div>
       <Image
         className={styles.menuButton}

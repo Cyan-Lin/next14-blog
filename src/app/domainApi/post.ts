@@ -9,7 +9,7 @@ const getPostCategories = async (): Promise<PostCategory[]> => {
   );
 
   if (!res.ok) {
-    throw new Error("getData error");
+    throw new Error("getPostCategories error");
   }
 
   return res.json();

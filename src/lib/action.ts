@@ -3,7 +3,6 @@
 import { connectToDb } from "./utils";
 import { Post } from "./models";
 import { revalidatePath } from "next/cache";
-import { signIn, signOut } from "./auth";
 import { cookies } from "next/headers";
 
 export const addPost = async (formData: FormData) => {
@@ -43,11 +42,18 @@ export const deletePost = async (formData: FormData) => {
   }
 };
 
+// 未使用
 export const handleGithubLogin = async () => {
-  await signIn("github");
+  // await signIn("github", {
+  //   redirectTo: "/blog",
+  // });
+
+  window.location.href = "/api/auth/signin";
+  // signIn("github", { redirectTo: "/blog" });
 };
 
+// 未使用
 export const handleGithubLogout = async () => {
   cookies().delete("user");
-  await signOut();
+  // await signOut({ redirectTo: "/login" });
 };

@@ -1,7 +1,9 @@
-import { auth } from "@/lib/auth";
+import { FormInfo } from "@/interfaces/I_Post";
+import { authOptions } from "@/lib/authOptions";
 import { Post, User } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { Error } from "mongoose";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 type PostProps = {
@@ -13,46 +15,49 @@ type PostProps = {
   content: string;
 };
 
-export const GET = async () => {
+export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  const currentUser = session?.user;
+
   try {
     connectToDb();
 
-    // 檢查是否有登入
-    const session = await auth();
-    const currentUser = session
-      ? await User.findOne({ email: session?.user?.email })
-      : null;
+    const category = req.nextUrl.searchParams.get("category");
 
-    // 根據用戶角色來設定查詢條件
     let query = {};
-    if (currentUser) {
-      if (currentUser.isAdmin) {
-        query = {}; // 管理員可以看到所有文章
-      } else {
-        query = { requiredRoles: { $in: ["user"] } };
-      }
-    } else {
-      // 未登入的用戶只能看到一般用戶的文章
-      // $or: [
-      //   { requiredRoles: { $in: ["user"] } },
-      //   { requiredRoles: { $exists: false } },
-      // ];
+    if (category) {
+      query = { categories: { $in: [category] } };
     }
 
-    // 查詢文章
+    // 檢查是否有登入
+    if (currentUser?.isAdmin) {
+      // 管理員可以看到所選擇的category的所有文章
+    } else {
+      query = {
+        ...query,
+        requiredRoles: { $in: ["user"] },
+      };
+    }
+
     const posts = await Post.find(query);
-    // console.log(posts);
 
     return NextResponse.json(posts);
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch Posts!");
   }
-};
+}
 
 export const POST = async (req: NextRequest) => {
-  const body: PostProps = await req.json();
-  const { title, slug, categories, desc, content } = body;
+  const session = await getServerSession(authOptions);
+  console.log("session", session);
+  const currentUser = session?.user;
+  if (!currentUser) {
+    return NextResponse.json("Unauthorized");
+  }
+
+  const body: FormInfo = await req.json();
+  const { title, slug, categories, desc, content, adminOnly } = body;
 
   if (!title || !slug || !categories || !desc || !content) {
     return NextResponse.json("Missing required fields");
@@ -61,24 +66,22 @@ export const POST = async (req: NextRequest) => {
   try {
     connectToDb();
 
-    const session = await auth();
-    const currentUser = await User.findOne({ email: session?.user?.email });
-    if (!currentUser) {
-      return NextResponse.json("User not found");
-    }
+    const foundUser = await User.findOne({ email: currentUser.email });
+    if (!foundUser) return NextResponse.json("DB User not found");
 
     const newPost = new Post({
       title,
       slug,
-      categories,
+      categories: categories.length > 0 ? categories : ["others"],
       desc,
-      userId: currentUser._id,
+      userId: foundUser._id,
       content,
+      requiredRoles: adminOnly ? ["admin"] : ["user"],
     });
 
     await newPost.save();
     return NextResponse.json({
-      status: "success",
+      status: "SUCCESS",
       message: "Post created!",
     });
   } catch (error: any) {

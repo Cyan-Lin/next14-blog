@@ -10,9 +10,10 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import styles from "./layout.module.css";
 import Cursor from "@/components/cursor";
-// import { isMobile } from "@/constant/common";
+// import { isMobile } from "@/helpers/common";
 // import Eruda from "@/components/eruda";
 import "antd/dist/reset.css";
+import NextAuthProvider from "@/hooks/providers/nextAuthProvider";
 
 const noto_sans_tc_init = Noto_Sans_TC({
   subsets: ["latin"],
@@ -41,21 +42,23 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ConfigProvider theme={theme}>
-        <body
-          className={`${styles.body} ${noto_sans_tc_init.variable} ${roboto_init.variable}`}
-        >
-          {/* {<Eruda />} */}
-          <Cursor />
-          <div className="container">
-            <AntdRegistry>
-              <Navbar />
-              {children}
-              <Footer />
-            </AntdRegistry>
-          </div>
-        </body>
-      </ConfigProvider>
+      <NextAuthProvider>
+        <ConfigProvider theme={theme}>
+          <body
+            className={`${styles.body} ${noto_sans_tc_init.variable} ${roboto_init.variable}`}
+          >
+            {/* {<Eruda />} */}
+            <Cursor />
+            <div className="container">
+              <AntdRegistry>
+                <Navbar />
+                {children}
+                <Footer />
+              </AntdRegistry>
+            </div>
+          </body>
+        </ConfigProvider>
+      </NextAuthProvider>
     </html>
   );
 }

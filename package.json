@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --port 3000",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -18,7 +18,7 @@
     "markdown-to-jsx": "^7.4.5",
     "mongoose": "^8.2.0",
     "next": "14.1.0",
-    "next-auth": "^5.0.0-beta.15",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
     "react-syntax-highlighter": "^15.5.0",

@@ -5,6 +5,8 @@ import { PostData } from "@/interfaces/I_Post";
 import dynamic from "next/dynamic";
 // import seedCategories from "@/data/seed";
 import { getPostCategories } from "../domainApi/post";
+import { headers } from "next/headers";
+import { getQueryParamsString } from "@/helpers/common";
 const PostFilter = dynamic(() => import("@/components/postFilter/postFilter"), {
   ssr: false,
 });
@@ -15,10 +17,19 @@ export const metadata: Metadata = {
 };
 
 // FETCH DATA WITH API
-const getPosts = async (): Promise<PostData[]> => {
-  const res = await fetch(`${process.env.MAIN_API_DOMAIN}/api/blog`, {
-    cache: "no-store",
-  });
+const getPosts = async (category?: string): Promise<PostData[]> => {
+  const queryParamsString = getQueryParamsString([
+    { key: "category", value: category },
+  ]);
+  console.log("queryParamsString", queryParamsString);
+
+  const res = await fetch(
+    `${process.env.MAIN_API_DOMAIN}/api/blog?${queryParamsString}`,
+    {
+      cache: "no-store",
+      headers: headers(),
+    }
+  );
 
   if (!res.ok) {
     throw new Error("getData error");
@@ -27,15 +38,19 @@ const getPosts = async (): Promise<PostData[]> => {
   return res.json();
 };
 
-async function BlogPage() {
-  const posts = await getPosts();
-
+async function BlogPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) {
+  // seedCategories();
+  const posts = await getPosts(searchParams.category);
   const categories = await getPostCategories();
 
   return (
     <div className={styles.container}>
       <div className={styles.posts}>
-        {posts.map((post) => (
+        {posts?.map((post) => (
           <div className={styles.post} key={post._id}>
             <PostCard post={post} />
           </div>

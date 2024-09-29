@@ -1,3 +1,4 @@
+import { FormInfo } from "@/interfaces/I_Post";
 import { Post } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
@@ -26,16 +27,18 @@ export const PUT = async (req: NextRequest, { params }: Props) => {
   try {
     connectToDb();
 
-    const data = await req.json();
+    const body: FormInfo = await req.json();
+    const { title, categories, desc, content, adminOnly } = body;
 
     const updatedPost = await Post.findOneAndUpdate(
       { slug },
       {
         $set: {
-          title: data.title,
-          categories: data.categories,
-          desc: data.desc,
-          content: data.content,
+          title: title,
+          categories: categories.length > 0 ? categories : ["others"],
+          desc: desc,
+          content: content,
+          requiredRoles: adminOnly ? ["admin"] : ["user"],
         },
       },
       { new: true }
@@ -46,7 +49,7 @@ export const PUT = async (req: NextRequest, { params }: Props) => {
     }
 
     return NextResponse.json({
-      status: "success",
+      status: "SUCCESS",
       message: "Post updated!",
     });
   } catch (error) {
