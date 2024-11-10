@@ -21,7 +21,6 @@ const getPosts = async (category?: string): Promise<PostData[]> => {
   const queryParamsString = getQueryParamsString([
     { key: "category", value: category },
   ]);
-  console.log("queryParamsString", queryParamsString);
 
   const res = await fetch(
     `${process.env.MAIN_API_DOMAIN}/api/blog?${queryParamsString}`,

@@ -14,7 +14,9 @@ export const connectToDb = async () => {
     }
 
     if (process.env.MONGO_DB) {
-      const db = await mongoose.connect(process.env.MONGO_DB);
+      const db = await mongoose.connect(process.env.MONGO_DB, {
+        dbName: "myBlog",
+      });
       connection.isConnected = db.connections[0].readyState;
     }
   } catch (error) {
