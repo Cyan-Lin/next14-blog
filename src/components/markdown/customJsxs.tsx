@@ -6,7 +6,7 @@ type Props = {
 };
 
 type LinkProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   href?: string;
 };
 

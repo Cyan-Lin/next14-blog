@@ -23,7 +23,6 @@ import {
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import dynamic from "next/dynamic";
-import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { getPostCategories } from "@/app/domainApi/post";
 import styled from "styled-components";

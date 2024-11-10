@@ -6,15 +6,6 @@ import { Error } from "mongoose";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-type PostProps = {
-  title: string;
-  slug: string;
-  categories: string;
-  desc: string;
-  userId: string;
-  content: string;
-};
-
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
   const currentUser = session?.user;
